@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgaultie <lgaultie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/14 18:20:40 by lgaultie          #+#    #+#             */
-/*   Updated: 2020/02/14 19:52:37 by lgaultie         ###   ########.fr       */
+/*   Created: 2020/02/14 19:01:22 by lgaultie          #+#    #+#             */
+/*   Updated: 2020/02/14 20:04:54 by lgaultie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fdf.h>
-#include <fcntl.h>
 
-int		exit_error(char *str)
+void	check_line(t_fdf *fdf, char *line)
 {
-	ft_putstr(str);
-	return (0);
-}
+	char	**tab;
+	int		i;
 
-void	init_structure(t_fdf *fdf, int fd)
-{
-	if (!(fdf = ft_memalloc(sizeof(t_fdf))))
+	i = 0;
+	if (!(tab = ft_strsplit(line, ' ')))
 		ft_error(fdf, &free_all, MALLOC);
-	read_file(fdf, fd);
 }
 
-int		main(int argc, char **argv)
+void	read_file(t_fdf *fdf, int fd)
 {
-	int		fd;
-	t_fdf	fdf;
+	char *line;
 
-	if (argc != 2)
-		return (exit_error(ONE_MAP));
-	if ((fd = open(argv[1], O_RDONLY)) == -1)
-		return (exit_error(CANT_OPEN));
-	init_structure(&fdf, fd);
-	return (0);
+	while (get_next_line(fd, &line) == 1)
+	{
+		printf("line = %s\n", line);
+		check_line(fdf, line);
+		ft_memdel((void*)&line);
+	}
 }

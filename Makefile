@@ -6,7 +6,7 @@
 #    By: lgaultie <lgaultie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/14 18:11:29 by lgaultie          #+#    #+#              #
-#    Updated: 2020/02/14 18:43:45 by lgaultie         ###   ########.fr        #
+#    Updated: 2020/02/14 19:39:40 by lgaultie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,9 @@ OBJDIR = obj
 SRCDIR = src
 INC = ./includes/
 
-SRCS = main.c
+SRCS =	main.c		\
+		read.c		\
+		free.c
 
 OBJ = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 #voir GNU 8.3 Functions for File Names
@@ -42,7 +44,7 @@ all: $(NAME)
 	@printf "$(_BLUE1)| |/ _  |/ _  | | | | |  _)| |/ _  )/___)  |  ___) | |   | |  ___)  \n"
 	@printf "$(_BLUE1)| ( ( | ( ( | | |_| | | |__| ( (/ /|___ |  | |     | |__/ /| |      \n"
 	@printf "$(_BLUE1)|_|\_|| |\_||_|\____|_|\___)_|\____|___/   |_|     |_____/ |_|      \n"
-	@printf "$(_BLUE1) (_____|                                                           \n"
+	@printf "$(_BLUE1) (_____|    $(_END)\n                                                       \n"
 
 $(NAME): $(OBJ)
 	@printf "$(_YELLOW)Compiling libft... $(_END)"
